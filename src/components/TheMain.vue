@@ -5,10 +5,10 @@
         <the-table class="w-full md:w-4/6" :data="taxe" />
 
         <div class="w-full mt-8 md:w-2/6 bg-zinc-100 px-4 py-3 md:-mt-3">
-          <h1 class="text-xl font-semibold text-gray-900 mb-6">Configurari</h1>
+          <h1 class="text-xl font-semibold text-gray-900 mb-6">Configurări</h1>
 
           <div class="mt-4">
-            <label for="decontari" class="block text-sm font-medium text-gray-700">Decontari</label>
+            <label for="decontari" class="block text-sm font-medium text-gray-700">Decontări</label>
             <div class="relative mt-1 rounded-md shadow-sm">
               <input type="text" name="decontari" id="decontari"
                      v-model="decontari"
@@ -23,7 +23,7 @@
           </div>
 
           <div class="mt-4">
-            <label for="checltuieliPFA" class="block text-sm font-medium text-gray-700">Cheltuiuli PFA</label>
+            <label for="checltuieliPFA" class="block text-sm font-medium text-gray-700">Cheltuieli PFA</label>
             <div class="relative mt-1 rounded-md shadow-sm">
               <input type="number" name="checltuieliPFA" id="checltuieliPFA" autocomplete="off"
                      v-model="cheltuieliPFA"
@@ -38,7 +38,7 @@
           </div>
 
           <div class="mt-4">
-            <label for="cheltuieliSRL" class="block text-sm font-medium text-gray-700">Cheltuiuli SRL</label>
+            <label for="cheltuieliSRL" class="block text-sm font-medium text-gray-700">Cheltuieli SRL</label>
             <div class="relative mt-1 rounded-md shadow-sm">
               <input type="number" name="cheltuieliSRL" id="cheltuieliSRL" autocomplete="off"
                      v-model="cheltuieliSRL"
@@ -90,8 +90,8 @@ export default {
       cheltuieliSRL: 250 * 12,
       cursEuro: 4.92,
       sume: [25_000, 35_000, 45_000, 50_000, 60_000, 70_000, 80_000],
-      tooltipDecontari: 'Decontarile trebuie sa fie mai mare sau egale ca cheltuielile',
-      tooltipCheltuieli: 'Bani pentru operatiuni. ex. Contabil, banca si comisioane, chirie birou'
+      tooltipDecontari: 'Decontările trebuie sa fie mai mari sau egale ca cheltuielile',
+      tooltipCheltuieli: 'Bani pentru operațiuni. ex: Contabil, bancă, comisioane, chirie birou'
     }
   },
   computed: {

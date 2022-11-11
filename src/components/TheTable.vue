@@ -3,7 +3,7 @@
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
         <h1 class="text-xl font-semibold text-gray-900">Tabel taxe freelanceri</h1>
-        <p class="mt-2 text-sm text-gray-700">Calculeaza taxele pentru PFA si SRL cu cu 1 angajat</p>
+        <p class="mt-2 text-sm text-gray-700">Calculează taxele pentru PFA și SRL cu 1 angajat</p>
       </div>
     </div>
     <div class="mt-8 flex flex-col">
@@ -14,7 +14,7 @@
               <thead class="bg-gray-50">
               <tr>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                  Venit anual
+                  Venit Brut anual
                 </th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Taxe PFA %</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Taxe SRL %</th>
