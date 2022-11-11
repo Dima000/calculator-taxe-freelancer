@@ -1,15 +1,11 @@
 <script setup>
-import TheFooter from './components/TheFooter';
-import TheControls from './components/TheControls';
+import TheFooter from './components/TheFooter.vue';
+import TheMain from './components/TheMain.vue';
 </script>
 
 <template>
-  <header>
-  </header>
-
-  <main>
-    <the-controls/>
-  </main>
-
-  <the-footer />
+  <div class="flex h-screen flex-col justify-between w-full">
+    <the-main/>
+    <the-footer/>
+  </div>
 </template>
