@@ -12,9 +12,9 @@
             <div class="relative mt-1 rounded-md shadow-sm">
               <input type="text" name="decontari" id="decontari"
                      v-model="decontari"
-                     :class="{'border-red-500 focus:border-red-500': errorDecontari }"
+                     :class="[errorDecontari ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-indigo-500']"
                      :placeholder="Math.max(cheltuieliPFA, cheltuieliSRL)"
-                     class="block w-full rounded-md border-gray-300 pr-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                     class="block w-full rounded-md pr-10 focus:ring-indigo-500 sm:text-sm"
                      placeholder="000-00-0000" />
               <div class="absolute inset-y-0 right-0 flex items-center pr-3" :title="tooltipDecontari">
                 <question-mark-circle-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -27,8 +27,8 @@
             <div class="relative mt-1 rounded-md shadow-sm">
               <input type="number" name="checltuieliPFA" id="checltuieliPFA" autocomplete="off"
                      v-model="cheltuieliPFA"
-                     :class="{'border-red-500 focus:border-red-500': decontari && cheltuieliPFA > decontari }"
-                     class="block w-full rounded-md border-gray-300 pr-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                     :class="[decontari && cheltuieliPFA > decontari ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-indigo-500']"
+                     class="block w-full rounded-md pr-10 focus:ring-indigo-500 sm:text-sm"
               />
               <div class="absolute inset-y-0 right-0 flex items-center pr-3"
                    :title="tooltipCheltuieli">
@@ -42,8 +42,8 @@
             <div class="relative mt-1 rounded-md shadow-sm">
               <input type="number" name="cheltuieliSRL" id="cheltuieliSRL" autocomplete="off"
                      v-model="cheltuieliSRL"
-                     :class="{'border-red-500 focus:border-red-500': decontari && cheltuieliSRL > decontari }"
-                     class="block w-full rounded-md border-gray-300 pr-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                     :class="[decontari && cheltuieliSRL > decontari ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-indigo-500']"
+                     class="block w-full rounded-md pr-10 focus:ring-indigo-500 sm:text-sm"
               />
               <div class="absolute inset-y-0 right-0 flex items-center pr-3"
                    :title="tooltipCheltuieli">

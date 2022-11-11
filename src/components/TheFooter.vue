@@ -1,11 +1,17 @@
 <template>
-  <footer class="w-full bg-zinc-100 mx-auto py-4 px-2 flex items-center justify-center">
-    <p class="text-center text-base text-gray-400 mr-2">
-      &copy; {{ year }} <a  class="hover:underline" href="https://www.linkedin.com/in/dumitru-motpan/">Dumitru Moțpan</a></p>
-    <a :href="gitHub.href" class="text-gray-400 hover:text-gray-500">
-      <span class="sr-only">{{ gitHub.name }}</span>
-      <component :is="gitHub.icon" class="h-6 w-6" aria-hidden="true" />
-    </a>
+  <footer class="relative w-full bg-zinc-100 mx-auto py-4 px-6 flex items-center justify-between">
+    <div></div>
+    <p class="text-center text-base text-gray-400">
+      &copy; {{ year }} <a class="hover:underline" href="https://www.linkedin.com/in/dumitru-motpan/">Dumitru Moțpan</a>
+    </p>
+
+    <div class="flex top-0 right-0 flex items-center justify-end">
+      <span class="text-base text-gray-400 mr-1">v{{ version }}</span>
+      <a :href="gitHub.href" class="text-gray-400 hover:text-gray-500">
+        <span class="sr-only">{{ gitHub.name }}</span>
+        <component :is="gitHub.icon" class="h-6 w-6" aria-hidden="true" />
+      </a>
+    </div>
   </footer>
 </template>
 
@@ -17,6 +23,7 @@ export default {
     return {
       year: new Date().getFullYear(),
       gitHubLink: '',
+      version: __APP_VERSION__,
     }
   },
   computed: {
