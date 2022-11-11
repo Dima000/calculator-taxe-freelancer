@@ -24,7 +24,7 @@ export default function calculatorTaxe(
         const brut = s * cursEuro;
         const taxeMicro = Math.ceil(brut * 0.01);
         const taxeAngajat = TAXE_SALARIAT_LUNAR * 12;
-        const taxeDiv = Math.ceil((brut - taxeMicro - taxeAngajat - decontari) * 0.08);
+        const taxeDiv = Math.ceil((brut - taxeMicro - salariuMinim * 12 - decontari) * 0.08);
         const net = brut - taxeMicro - taxeAngajat - taxeDiv - cheltuieliSRL - CASS24;
 
         return 1 - (net / brut);
