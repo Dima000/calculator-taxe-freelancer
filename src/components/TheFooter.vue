@@ -1,6 +1,7 @@
 <template>
   <footer class="w-full bg-zinc-100 mx-auto py-4 px-2 flex items-center justify-center">
-    <p class="text-center text-base text-gray-400 mr-2">&copy; {{ year }} Dumitru Moțpan</p>
+    <p class="text-center text-base text-gray-400 mr-2">
+      &copy; {{ year }} <a  class="hover:underline" href="https://www.linkedin.com/in/dumitru-motpan/">Dumitru Moțpan</a></p>
     <a :href="gitHub.href" class="text-gray-400 hover:text-gray-500">
       <span class="sr-only">{{ gitHub.name }}</span>
       <component :is="gitHub.icon" class="h-6 w-6" aria-hidden="true" />
