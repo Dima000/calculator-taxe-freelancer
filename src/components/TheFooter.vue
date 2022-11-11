@@ -22,7 +22,7 @@ export default {
     gitHub() {
       return {
         name: 'GitHub',
-        href: '#',
+        href: 'https://gist.github.com/Dima000/900abd00e5316485e8718fa03416cd13',
         icon: defineComponent({
           render: () =>
               h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
