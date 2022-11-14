@@ -1,6 +1,6 @@
 {
   "name": "calculator-taxe-2023",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Dumitru Moțpan",
   "scripts": {
     "dev": "vite",

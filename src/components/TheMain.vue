@@ -53,11 +53,13 @@
           </div>
 
           <div class="mt-4">
-            <label for="salariu_minim" class="block text-sm font-medium text-gray-700">Salariu minim</label>
-            <select id="salariu_minim" name="salariu_minim" :value="salariuMinim" @change="changeSalariuMinim"
+            <label for="salariu_minim" class="block text-sm font-medium text-gray-700">Salariu Brut angajat</label>
+            <select id="salariu_minim" name="salariu_minim" :value="salariuAngajat" @change="changeSalariuAngajat"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-              <option>2550</option>
-              <option>3000</option>
+              <option>2550 (minim)</option>
+              <option>5000</option>
+              <option>7500</option>
+              <option>10000</option>
             </select>
           </div>
 
@@ -84,12 +86,12 @@ export default {
   components: { TheTable, QuestionMarkCircleIcon },
   data() {
     return {
-      salariuMinim: 2550,
+      salariuAngajat: "2550 (minim)",
       decontari: 10000,
       cheltuieliPFA: 150 * 12,
       cheltuieliSRL: 250 * 12,
       cursEuro: 4.92,
-      sume: [25_000, 35_000, 45_000, 50_000, 60_000, 70_000, 80_000],
+      sume: [10_000, 20_000, 30_000, 40_000, 50_000, 60_000, 70_000, 80_000],
       tooltipDecontari: 'Decontările trebuie sa fie mai mari sau egale ca cheltuielile',
       tooltipCheltuieli: 'Bani pentru operațiuni. ex: Contabil, bancă, comisioane, chirie birou'
     }
@@ -99,9 +101,13 @@ export default {
       return (this.decontari && this.cheltuieliPFA && this.cheltuieliPFA > this.decontari) ||
           (this.decontari && this.cheltuieliSRL && this.cheltuieliSRL > this.decontari);
     },
+    salariuAngajatNr() {
+      const strNumber = this.salariuAngajat.toString().split(' ').at(0);
+      return +strNumber;
+    },
     taxe() {
       return calculatorTaxe({
-        salariuMinim: this.salariuMinim,
+        salariuAngajat: this.salariuAngajatNr,
         decontari: this.decontari,
         cheltuieliSRL: this.cheltuieliSRL,
         cheltuieliPFA: this.cheltuieliPFA,
@@ -111,8 +117,8 @@ export default {
     }
   },
   methods: {
-    changeSalariuMinim(event) {
-      this.salariuMinim = event.target.value;
+    changeSalariuAngajat(event) {
+      this.salariuAngajat = event.target.value;
     }
   },
 }

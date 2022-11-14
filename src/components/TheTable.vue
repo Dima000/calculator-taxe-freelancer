@@ -2,8 +2,8 @@
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Tabel taxe freelanceri</h1>
-        <p class="mt-2 text-sm text-gray-700">Calculează taxele pentru PFA și SRL cu 1 angajat</p>
+        <h1 class="text-xl font-semibold text-gray-900">Tabel profit freelanceri</h1>
+        <p class="mt-2 text-sm text-gray-700">Calculează profitul pentru PFA și SRL cu 1 angajat</p>
       </div>
     </div>
     <div class="mt-8 flex flex-col">
@@ -16,10 +16,10 @@
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                   Venit Brut anual
                 </th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Taxe PFA %</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Taxe SRL %</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Taxe PFA RON</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Taxe SRL RON</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Profit PFA %</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Profit SRL %</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Profit PFA RON</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Profit SRL RON</th>
               </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
