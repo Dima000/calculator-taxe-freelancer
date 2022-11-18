@@ -1,21 +1,20 @@
-const SALARIU_MINIM_2022 = 2550;
-
 export default function calculatorTaxe(
     {
         salariuAngajat,
         decontari,
         cheltuieliPFA,
         cheltuieliSRL,
-        cursEuro,
         sume,
+        CURS_EURO,
+        SALARIU_MINIM,
     }
 ) {
     let TAXE_ANGAJAT_LUNAR = taxeAnjagatLunar(salariuAngajat); // include CAM
 
 
     function pfa(s) {
-        const brut = s * cursEuro;
-        const { CAS, CASS } = calculeazaCAS_CASS(brut);
+        const brut = s * CURS_EURO;
+        const { CAS, CASS } = calculeazaCAS_CASS(brut, SALARIU_MINIM);
 
         const taxeProfit = Math.ceil((brut - CAS - decontari) / 10);
         const net = brut - taxeProfit - CAS - CASS - cheltuieliPFA;
@@ -27,13 +26,13 @@ export default function calculatorTaxe(
     }
 
     function srlCuAngajat(s) {
-        const brut = s * cursEuro;
+        const brut = s * CURS_EURO;
         const taxeMicro = Math.ceil(brut * 0.01);
         const camAngajat = salariuAngajat * 0.0225;
         const decontSalariuAngajat = (salariuAngajat + camAngajat) * 12;
         const taxeDiv = Math.ceil((brut - taxeMicro - decontSalariuAngajat - decontari) * 0.08);
         const netFaraCASS = brut - taxeMicro - TAXE_ANGAJAT_LUNAR * 12 - taxeDiv - cheltuieliSRL;
-        const { CASS } = calculeazaCAS_CASS(netFaraCASS);
+        const { CASS } = calculeazaCAS_CASS(netFaraCASS, SALARIU_MINIM);
         const net = netFaraCASS - CASS;
 
         return {
@@ -72,15 +71,15 @@ function taxeAnjagatLunar(salariuAngajat) {
     }
 }
 
-function calculeazaCAS_CASS(venit) {
-    const CAS_LUNAR = SALARIU_MINIM_2022 * 0.25;
-    const CASS_LUNAR = SALARIU_MINIM_2022 * 0.1;
+function calculeazaCAS_CASS(venit, SALARIU_MINIM) {
+    const CAS_LUNAR = SALARIU_MINIM * 0.25;
+    const CASS_LUNAR = SALARIU_MINIM * 0.1;
 
     let CAS, CASS;
-    if (venit >= SALARIU_MINIM_2022 * 24) {
+    if (venit >= SALARIU_MINIM * 24) {
         CAS = CAS_LUNAR * 24;
         CASS = CASS_LUNAR * 24;
-    } else if (venit < SALARIU_MINIM_2022 * 24 && venit >= SALARIU_MINIM_2022 * 12) {
+    } else if (venit < SALARIU_MINIM * 24 && venit >= SALARIU_MINIM * 12) {
         CAS = CAS_LUNAR * 12;
         CASS = CASS_LUNAR * 12;
     } else {

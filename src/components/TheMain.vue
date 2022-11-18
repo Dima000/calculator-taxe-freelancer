@@ -53,13 +53,24 @@
           </div>
 
           <div class="mt-4">
-            <label for="salariu_minim" class="block text-sm font-medium text-gray-700">Salariu Brut angajat</label>
-            <select id="salariu_minim" name="salariu_minim" :value="salariuAngajat" @change="changeSalariuAngajat"
+            <label for="salariu_angajat" class="block text-sm font-medium text-gray-700">Salariu Brut SRL</label>
+            <select id="salariu_angajat" name="salariu_angajat" :value="salariuAngajat" @change="changeSalariuAngajat"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
               <option>2550 (minim)</option>
               <option>5000</option>
               <option>7500</option>
               <option>10000</option>
+            </select>
+          </div>
+
+          <div class="mt-4">
+            <label for="salariu_minim" class="block text-sm font-medium text-gray-700">Salariul minim pe economie</label>
+            <select id="salariu_minim" name="salariu_minim" :value="salariuMinim" @change="changeSalariulMinim"
+                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+              <option>2550 (2022)</option>
+              <option>3000 (simulare)</option>
+              <option>3500 (simulare)</option>
+              <option>4000 (simulare)</option>
             </select>
           </div>
 
@@ -87,6 +98,7 @@ export default {
   data() {
     return {
       salariuAngajat: "2550 (minim)",
+      salariuMinim: '2550 (2022)',
       decontari: 10000,
       cheltuieliPFA: 150 * 12,
       cheltuieliSRL: 250 * 12,
@@ -102,8 +114,10 @@ export default {
           (this.decontari && this.cheltuieliSRL && this.cheltuieliSRL > this.decontari);
     },
     salariuAngajatNr() {
-      const strNumber = this.salariuAngajat.toString().split(' ').at(0);
-      return +strNumber;
+      return this.optionStrToNumber(this.salariuAngajat);
+    },
+    salariuMinimNr() {
+      return this.optionStrToNumber(this.salariuMinim);
     },
     taxe() {
       return calculatorTaxe({
@@ -111,15 +125,23 @@ export default {
         decontari: this.decontari,
         cheltuieliSRL: this.cheltuieliSRL,
         cheltuieliPFA: this.cheltuieliPFA,
-        cursEuro: this.cursEuro,
         sume: this.sume,
+        SALARIU_MINIM: this.salariuMinimNr,
+        CURS_EURO: this.cursEuro,
       });
     }
   },
   methods: {
     changeSalariuAngajat(event) {
       this.salariuAngajat = event.target.value;
-    }
+    },
+    changeSalariulMinim(event) {
+      this.salariuMinim = event.target.value;
+    },
+    optionStrToNumber(optionValue) {
+      const strNumber = optionValue.toString().split(' ').at(0);
+      return +strNumber;
+    },
   },
 }
 </script>
