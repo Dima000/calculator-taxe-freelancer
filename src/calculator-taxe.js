@@ -1,4 +1,4 @@
-const SALARIU_MINIM_2022 = 2250;
+const SALARIU_MINIM_2022 = 2550;
 
 export default function calculatorTaxe(
     {
