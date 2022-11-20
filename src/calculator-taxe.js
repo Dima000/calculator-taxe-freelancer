@@ -86,6 +86,8 @@ export default function calculatorTaxe(
 function salariuNetAnjagat(salariuAngajat) {
     switch (salariuAngajat) {
         // https://www.calculator-salarii.ro/2550-brut-calcul-salariu-net/
+        case 2550:
+            return 1524;
         case 3000:
             return 1815;
         case 5000:
@@ -94,8 +96,6 @@ function salariuNetAnjagat(salariuAngajat) {
             return 4387;
         case 10000:
             return 5850;
-        case 2550:
-            return 1524;
         default:
             return 0;
     }
