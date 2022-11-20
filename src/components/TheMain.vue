@@ -4,83 +4,104 @@
       <div class="flex flex-col md:flex-row">
         <the-table class="w-full md:w-4/6" :data="taxe" />
 
-        <div class="w-full mt-8 md:w-2/6 bg-zinc-100 px-4 py-3 md:-mt-3">
+        <div class="w-full md:w-2/6 mt-6">
           <h1 class="text-xl font-semibold text-gray-900 mb-6">Configurări</h1>
-
-          <div class="mt-4">
-            <label for="decontari" class="block text-sm font-medium text-gray-700">Decontări</label>
-            <div class="relative mt-1 rounded-md shadow-sm">
-              <input type="text" name="decontari" id="decontari"
-                     v-model="decontari"
-                     :class="[errorDecontari ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-indigo-500']"
-                     :placeholder="Math.max(cheltuieliPFA, cheltuieliSRL)"
-                     class="block w-full rounded-md pr-10 focus:ring-indigo-500 sm:text-sm"
-                     placeholder="000-00-0000" />
-              <div class="absolute inset-y-0 right-0 flex items-center pr-3" :title="tooltipDecontari">
-                <question-mark-circle-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-              </div>
+          <div class="mt-4 bg-zinc-100 rounded-sm px-4 py-3">
+            <div>
+              <label for="salariu_minim" class="block text-sm font-medium text-gray-700">
+                Salariul minim pe economie
+              </label>
+              <select id="salariu_minim" name="salariu_minim" :value="salariuMinim" @change="changeSalariulMinim"
+                      class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                <option>2550 (2022)</option>
+                <option>3000 (2023)</option>
+                <option>3500 (simulare)</option>
+                <option>4000 (simulare)</option>
+              </select>
             </div>
-          </div>
 
-          <div class="mt-4">
-            <label for="checltuieliPFA" class="block text-sm font-medium text-gray-700">Cheltuieli PFA</label>
-            <div class="relative mt-1 rounded-md shadow-sm">
-              <input type="number" name="checltuieliPFA" id="checltuieliPFA" autocomplete="off"
-                     v-model="cheltuieliPFA"
-                     :class="[decontari && cheltuieliPFA > decontari ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-indigo-500']"
-                     class="block w-full rounded-md pr-10 focus:ring-indigo-500 sm:text-sm"
+            <div class="mt-4">
+              <label for="cursEuro" class="block text-sm font-medium text-gray-700">Curs EURO</label>
+              <input type="number" name="cursEuro" id="cursEuro" autocomplete="off"
+                     v-model="cursEuro"
+                     min="0"
+                     class="mt-1 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
-              <div class="absolute inset-y-0 right-0 flex items-center pr-3"
-                   :title="tooltipCheltuieli">
-                <question-mark-circle-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-              </div>
             </div>
           </div>
 
-          <div class="mt-4">
-            <label for="cheltuieliSRL" class="block text-sm font-medium text-gray-700">Cheltuieli SRL</label>
-            <div class="relative mt-1 rounded-md shadow-sm">
-              <input type="number" name="cheltuieliSRL" id="cheltuieliSRL" autocomplete="off"
-                     v-model="cheltuieliSRL"
-                     :class="[decontari && cheltuieliSRL > decontari ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-indigo-500']"
-                     class="block w-full rounded-md pr-10 focus:ring-indigo-500 sm:text-sm"
+          <div class="mt-4 bg-zinc-100 rounded-sm px-4 py-3">
+            <h3 class="font-semibold text-gray-900 mb-4">PFA</h3>
+
+            <div>
+              <label for="checltuieliPFA" class="block text-sm font-medium text-gray-700">Cheltuieli PFA</label>
+              <div class="mt-1 rounded-md shadow-sm flex items-center">
+                <input type="number" name="checltuieliPFA" id="checltuieliPFA" autocomplete="off"
+                       min="0"
+                       v-model="cheltuieliPFA"
+                       class="block w-full rounded-md mr-4 focus:ring-indigo-500 sm:text-sm border-gray-300 focus:border-indigo-500"
+                />
+                <div class="flex items-center"
+                     :title="tooltipCheltuieli">
+                  <question-mark-circle-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label for="normaPFA" class="block text-sm font-medium text-gray-700">Norma de venit</label>
+              <input type="number" name="normaPFA" id="normaPFA" autocomplete="off"
+                     min="0"
+                     v-model="normaPFA"
+                     class="mt-1 w-full rounded-md border-gray-300 pr-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               />
-              <div class="absolute inset-y-0 right-0 flex items-center pr-3"
-                   :title="tooltipCheltuieli">
-                <question-mark-circle-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-              </div>
+            </div>
+
+            <div class="mt-4">
+              <label for="reducereNorma" class="block text-sm font-medium text-gray-700">Coeficient ajustare norma (%)</label>
+              <input type="number" name="reducereNorma" id="reducereNorma" autocomplete="off"
+                     min="-100"
+                     max="100"
+                     v-model="coeficientAjustareNorma"
+                     class="mt-1 w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
             </div>
           </div>
 
-          <div class="mt-4">
-            <label for="salariu_angajat" class="block text-sm font-medium text-gray-700">Salariu Brut SRL</label>
-            <select id="salariu_angajat" name="salariu_angajat" :value="salariuAngajat" @change="changeSalariuAngajat"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-              <option>2550 (minim)</option>
-              <option>5000</option>
-              <option>7500</option>
-              <option>10000</option>
-            </select>
-          </div>
+          <div class="mt-4 bg-zinc-100 rounded-sm px-4 py-3">
+            <h3 class="font-semibold text-gray-900 mb-4">SRL</h3>
 
-          <div class="mt-4">
-            <label for="salariu_minim" class="block text-sm font-medium text-gray-700">Salariul minim pe economie</label>
-            <select id="salariu_minim" name="salariu_minim" :value="salariuMinim" @change="changeSalariulMinim"
-                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-              <option>2550 (2022)</option>
-              <option>3000 (simulare)</option>
-              <option>3500 (simulare)</option>
-              <option>4000 (simulare)</option>
-            </select>
-          </div>
+            <div>
+              <label for="checltuieliSRL" class="block text-sm font-medium text-gray-700">
+                Cheltuieli SRL
+              </label>
+              <div class="mt-1 rounded-md shadow-sm flex items-center">
+                <input type="number" name="checltuieliSRL" id="checltuieliSRL" autocomplete="off"
+                       min="0"
+                       v-model="cheltuieliSRL"
+                       class="block w-full rounded-md mr-4 focus:ring-indigo-500 sm:text-sm border-gray-300 focus:border-indigo-500"
+                />
+                <div class="flex items-center"
+                     :title="tooltipCheltuieli">
+                  <question-mark-circle-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+              </div>
+            </div>
 
-          <div class="mt-4">
-            <label for="cursEuro" class="block text-sm font-medium text-gray-700">Curs EURO</label>
-            <input type="number" name="cursEuro" id="cursEuro" autocomplete="off"
-                   :class="{'border-red-500 focus:border-red-500': decontari && cheltuieliSRL > decontari }"
-                   v-model="cursEuro"
-                   class="mt-1 w-full rounded-md border-gray-300 pr-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-            />
+            <div class="mt-4">
+              <label for="salariuAngajat" class="block text-sm font-medium text-gray-700">
+                Salariul angajat
+              </label>
+              <select id="salariuAngajat" name="salariuAngajat"
+                      :value="salariuAngajat"
+                      @change="changeSalariuAngajat"
+                      class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                <option>2550 (minim 2022)</option>
+                <option>3000 (minim 2023)</option>
+                <option>3500 (simulare)</option>
+                <option>4000 (simulare)</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -97,22 +118,18 @@ export default {
   components: { TheTable, QuestionMarkCircleIcon },
   data() {
     return {
-      salariuAngajat: "2550 (minim)",
-      salariuMinim: '2550 (2022)',
-      decontari: 10000,
-      cheltuieliPFA: 150 * 12,
-      cheltuieliSRL: 250 * 12,
+      salariuAngajat: "3000 (minim 2023)",
+      salariuMinim: '3000 (2023)',
+      cheltuieliPFA: 1000,
+      cheltuieliSRL: 3000,
       cursEuro: 4.92,
+      normaPFA: 54_000,
+      coeficientAjustareNorma: -50,
       sume: [10_000, 20_000, 30_000, 40_000, 50_000, 60_000, 70_000, 80_000],
-      tooltipDecontari: 'Decontările trebuie sa fie mai mari sau egale ca cheltuielile',
-      tooltipCheltuieli: 'Bani pentru operațiuni. ex: Contabil, bancă, comisioane, chirie birou'
+      tooltipCheltuieli: 'Costuri operatiuni. ex: Contabil, bancă, comisioane, chirie sediu social, etc.'
     }
   },
   computed: {
-    errorDecontari() {
-      return (this.decontari && this.cheltuieliPFA && this.cheltuieliPFA > this.decontari) ||
-          (this.decontari && this.cheltuieliSRL && this.cheltuieliSRL > this.decontari);
-    },
     salariuAngajatNr() {
       return this.optionStrToNumber(this.salariuAngajat);
     },
@@ -122,12 +139,13 @@ export default {
     taxe() {
       return calculatorTaxe({
         salariuAngajat: this.salariuAngajatNr,
-        decontari: this.decontari,
         cheltuieliSRL: this.cheltuieliSRL,
         cheltuieliPFA: this.cheltuieliPFA,
         sume: this.sume,
         SALARIU_MINIM: this.salariuMinimNr,
         CURS_EURO: this.cursEuro,
+        normaPFA: this.normaPFA,
+        coeficientAjustareNorma: this.coeficientAjustareNorma
       });
     }
   },
